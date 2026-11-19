@@ -22,7 +22,9 @@ const OUTPUT_DIR = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
 
 // The address of one post: https://x.com/<handle>/status/<id>, the id in
 // digits only; twitter.com is the same address on the older host name.
-const POST_URL = /^https:\/\/(?:x\.com|twitter\.com)\/[^/?#]+\/status\/\d+\/?$/;
+// The handle must be a real X handle (1-15 letters, digits or underscores):
+// a looser pattern would wave through addresses no post can live at.
+const POST_URL = /^https:\/\/(?:x\.com|twitter\.com)\/[A-Za-z0-9_]{1,15}\/status\/\d+\/?$/;
 
 function fail(message: string): never {
   console.error(`main.ts: ${message}`);
